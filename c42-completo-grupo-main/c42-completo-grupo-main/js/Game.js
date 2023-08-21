@@ -127,6 +127,15 @@ class Game {
 
       this.handlePlayerControls();
 
+      const finishLine = height * 6 -100
+      if (player.positionY > finishLine) {
+        gameState = 2
+        player.rank += 1
+        Player.updatecarsAtEnd(player.rank)
+        player.update()
+        this.showRank()
+      }
+
       drawSprites();
     }
   }
@@ -226,5 +235,13 @@ handlePlayerControls() {
 }
 
 
-
+showRank(){
+  swal ({
+    title: `incrivel!${"\n"}Rank${"\n"}${player.rank}`,
+    text: "você alcançou a linha de chegada com sucesso",
+    imageUrl: "https://raw.githubusercontent.com/vishalgaddam873/p5-multiplayer-car-race-game/master/assets/cup.png",
+    imageSize: "100 x 100",
+    confirmButtomText: "Ok",
+  })
+}
 }
